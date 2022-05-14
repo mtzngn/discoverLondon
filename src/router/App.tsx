@@ -1,15 +1,13 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import store from '../store/store';
-import {Provider} from 'react-redux';
+import WelcomeScreen from '../screens/WelcomeScreen';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <SafeAreaView style={styles.backgroundStyle}>
-        <Text>Welcome to heaven</Text>
-      </SafeAreaView>
-    </Provider>
+    <SafeAreaView style={styles.backgroundStyle}>
+      <Text>Welcome to heaven</Text>
+      <WelcomeScreen />
+    </SafeAreaView>
   );
 };
 

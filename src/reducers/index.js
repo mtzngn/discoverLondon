@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import landmarksReducer from './landmarksReducer';
+import landmark from './landmarksReducer';
 
 export default combineReducers({
-  landmarksReducer,
+  landmark,
 });
