@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {getHeight, getWidth} from '../../utils';
@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const LandmarkMap: FunctionComponent = () => {
+const LandmarkMap: React.FC = () => {
   return (
     <View style={styles.container}>
       <MapView
-        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+        provider={PROVIDER_GOOGLE}
         style={styles.map}
         region={{
           latitude: 37.78825,

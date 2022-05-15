@@ -1,7 +1,7 @@
-import React, {FunctionComponent} from 'react';
+import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 
-const App: FunctionComponent = () => {
+const App: React.FC = () => {
   return <HomeScreen />;
 };
 
