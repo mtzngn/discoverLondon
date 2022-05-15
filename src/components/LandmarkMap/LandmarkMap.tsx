@@ -45,9 +45,10 @@ const LandmarkMap: React.FC<Array<Data>> = ({data}) => {
             latitudeDelta: 0.14,
             longitudeDelta: 0.0121,
           }}>
-          {/* {data.map(el => {
+          {data.map(el => {
             return (
               <Marker
+                tracksViewChanges={false}
                 coordinate={{
                   latitude: el.latlng.latitude,
                   longitude: el.latlng.longitude,
@@ -70,7 +71,7 @@ const LandmarkMap: React.FC<Array<Data>> = ({data}) => {
                 </View>
               </Marker>
             );
-          })} */}
+          })}
         </MapView>
       </View>
     )
