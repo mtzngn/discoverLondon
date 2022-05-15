@@ -38,13 +38,14 @@ interface Props {
   name: string;
   id: number;
   uri: string;
+  description: string;
 }
 
-const LandmarkCard: React.FC<Props> = ({name, id, uri}) => {
+const LandmarkCard: React.FC<Props> = ({name, id, uri, description}) => {
   const navigation = useNavigation();
   const onPress = () => {
     console.log('card pressed');
-    navigation.navigate('CardDetails', {name, id, uri});
+    navigation.navigate('CardDetails', {name, id, uri, description});
   };
   return (
     <TouchableOpacity style={styles.cardContainer} onPress={onPress}>

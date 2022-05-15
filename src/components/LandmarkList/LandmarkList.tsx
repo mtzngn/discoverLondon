@@ -27,7 +27,12 @@ const styles = StyleSheet.create({
 });
 
 const renderItem = ({item}: any) => (
-  <LandmarkCard name={item.name} id={item.id} uri={item.image} />
+  <LandmarkCard
+    name={item.name}
+    id={item.id}
+    uri={item.image}
+    description={item.description}
+  />
 );
 
 const LandmarkList: React.FC<Array<Data>> = ({data}) => {
@@ -38,12 +43,7 @@ const LandmarkList: React.FC<Array<Data>> = ({data}) => {
       <ScrollView
         style={styles.listContainer}
         contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
-        pagingEnabled
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
         decelerationRate={0}
-        snapToInterval={300}
-        snapToAlignment="center"
         onScroll={Animated.event([
           {
             nativeEvent: {
@@ -60,6 +60,10 @@ const LandmarkList: React.FC<Array<Data>> = ({data}) => {
           renderItem={renderItem}
           horizontal={true}
           keyExtractor={item => item.id}
+          snapToInterval={300}
+          snapToAlignment="center"
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
         />
       </ScrollView>
     )
