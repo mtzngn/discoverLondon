@@ -1,18 +1,8 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import React, {FunctionComponent} from 'react';
+import HomeScreen from '../screens/HomeScreen';
 
-const App: React.ReactNode = () => {
-  return (
-    <SafeAreaView style={styles.backgroundStyle}>
-      <Text>Welcome to heaven</Text>
-    </SafeAreaView>
-  );
+const App: FunctionComponent = () => {
+  return <HomeScreen />;
 };
-
-const styles = StyleSheet.create({
-  backgroundStyle: {
-    backgroundColor: 'lightblue',
-  },
-});
 
 export default App;
