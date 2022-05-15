@@ -1,12 +1,10 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import WelcomeScreen from '../screens/WelcomeScreen';
 
-const App = () => {
+const App: React.ReactNode = () => {
   return (
     <SafeAreaView style={styles.backgroundStyle}>
       <Text>Welcome to heaven</Text>
-      <WelcomeScreen />
     </SafeAreaView>
   );
 };
