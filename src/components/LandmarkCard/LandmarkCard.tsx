@@ -1,6 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
+import {lightText} from '../../themes/colors';
+import {SharedElement} from 'react-navigation-shared-element';
+import {useNavigation} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 30,
     maxWidth: 200,
-    color: 'white',
+    color: lightText,
     fontWeight: '800',
     marginTop: 'auto',
     paddingLeft: 20,
@@ -38,14 +41,21 @@ interface Props {
 }
 
 const LandmarkCard: React.FC<Props> = ({name, id, uri}) => {
+  const navigation = useNavigation();
+  const onPress = () => {
+    console.log('card pressed');
+    navigation.navigate('CardDetails', {name, id, uri});
+  };
   return (
-    <View style={styles.cardContainer}>
-      <Image style={styles.cardImage} source={{uri}} />
+    <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
+      <SharedElement id={`item.${id}.photo`} style={{width: 280, height: 200}}>
+        <Image style={styles.cardImage} source={{uri}} />
+      </SharedElement>
       <View style={styles.cardOverlay}>
         <Text style={styles.cardTitle}>{name}</Text>
         <LikedIndicator />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

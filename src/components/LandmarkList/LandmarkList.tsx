@@ -1,7 +1,8 @@
-import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import React, {useRef} from 'react';
+import {StyleSheet, FlatList, Animated, ScrollView} from 'react-native';
 import {getHeight, getWidth} from '../../utils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
+import {whiteBg} from '../../themes/colors';
 
 interface Data {
   id: number;
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     height: getHeight() * 0.35,
     width: getWidth(),
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: whiteBg,
     borderRadius: 30,
   },
 });
@@ -30,16 +31,38 @@ const renderItem = ({item}: any) => (
 );
 
 const LandmarkList: React.FC<Array<Data>> = ({data}) => {
+  const scrollX = useRef(new Animated.Value(0)).current;
+
   return (
-    <View style={styles.listContainer}>
-      <FlatList
+    data && (
+      <ScrollView
+        style={styles.listContainer}
         contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
-        data={data}
-        renderItem={renderItem}
+        pagingEnabled
         horizontal={true}
-        keyExtractor={item => item.id}
-      />
-    </View>
+        showsHorizontalScrollIndicator={false}
+        decelerationRate={0}
+        snapToInterval={300}
+        snapToAlignment="center"
+        onScroll={Animated.event([
+          {
+            nativeEvent: {
+              contentOffset: {
+                x: scrollX,
+              },
+            },
+          },
+        ])}
+        scrollEventThrottle={1}>
+        <FlatList
+          contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
+          data={data}
+          renderItem={renderItem}
+          horizontal={true}
+          keyExtractor={item => item.id}
+        />
+      </ScrollView>
+    )
   );
 };
 

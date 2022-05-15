@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
-import LandmarkMap from '../components/LandmarkMap/LandmarkMap';
-import LandmarkList from '../components/LandmarkList/LandmarkList';
-import londonLandmarks from '../api/londonLandmarks.json';
+import LandmarkMap from '../../components/LandmarkMap/LandmarkMap';
+import LandmarkList from '../../components/LandmarkList/LandmarkList';
+import londonLandmarks from '../../api/londonLandmarks.json';
 
 interface Data {
   id: number;
@@ -24,7 +24,7 @@ const HomeScreen: React.FC = () => {
   return (
     data && (
       <View>
-        <LandmarkMap />
+        <LandmarkMap data={data} />
         <LandmarkList data={data} />
       </View>
     )
