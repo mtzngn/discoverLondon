@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import Icon from 'react-native-vector-icons/Fontisto';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -36,7 +37,7 @@ const LandmarkCard: React.FC = ({name, id, uri}) => {
       <Image style={styles.cardImage} source={{uri}} />
       <View style={styles.cardOverlay}>
         <Text style={styles.cardTitle}>{name}</Text>
-        <Text>Heart</Text>
+        <Icon name="heart" size={20} />
       </View>
     </View>
   );
