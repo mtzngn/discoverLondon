@@ -3,6 +3,17 @@ import {View, StyleSheet, FlatList} from 'react-native';
 import {getHeight, getWidth} from '../../utils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 
+interface Data {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  latlng: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
 const styles = StyleSheet.create({
   listContainer: {
     marginTop: getHeight() * 0.65,
@@ -18,7 +29,7 @@ const renderItem = ({item}: any) => (
   <LandmarkCard name={item.name} id={item.id} uri={item.image} />
 );
 
-const LandmarkList: React.FC = ({data}) => {
+const LandmarkList: React.FC<Array<Data>> = ({data}) => {
   return (
     <View style={styles.listContainer}>
       <FlatList

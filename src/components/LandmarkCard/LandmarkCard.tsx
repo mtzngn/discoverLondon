@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import Icon from 'react-native-vector-icons/Fontisto';
+import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -31,13 +31,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const LandmarkCard: React.FC = ({name, id, uri}) => {
+interface Props {
+  name: string;
+  id: number;
+  uri: string;
+}
+
+const LandmarkCard: React.FC<Props> = ({name, id, uri}) => {
   return (
     <View style={styles.cardContainer}>
       <Image style={styles.cardImage} source={{uri}} />
       <View style={styles.cardOverlay}>
         <Text style={styles.cardTitle}>{name}</Text>
-        <Icon name="heart" size={20} />
+        <LikedIndicator />
       </View>
     </View>
   );
