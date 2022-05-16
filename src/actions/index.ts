@@ -1,1 +1,1 @@
-export * from './landmark_actions';
+export * from './landmarkActions';

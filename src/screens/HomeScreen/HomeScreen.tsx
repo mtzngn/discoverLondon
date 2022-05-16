@@ -1,33 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import LandmarkMap from '../../components/LandmarkMap/LandmarkMap';
 import LandmarkList from '../../components/LandmarkList/LandmarkList';
 import londonLandmarks from '../../api/londonLandmarks.json';
+import {initializeLandmarks} from '../../actions/landmarkActions';
 
-interface Data {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  latlng: {
-    latitude: number;
-    longitude: number;
-  };
-}
+import {useDispatch} from 'react-redux';
 
 const HomeScreen: React.FC = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    setData(londonLandmarks);
+    dispatch(initializeLandmarks(londonLandmarks));
   }, []);
 
-  const [data, setData] = useState<Array<Data>>([]);
   return (
-    data && (
-      <View>
-        <LandmarkMap data={data} />
-        <LandmarkList data={data} />
-      </View>
-    )
+    <View>
+      <LandmarkMap />
+      <LandmarkList />
+    </View>
   );
 };
 

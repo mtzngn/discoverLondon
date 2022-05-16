@@ -1,18 +1,26 @@
-import {PayloadAction} from '@reduxjs/toolkit';
-import {LIKE_LANDMARK} from '../actions/types';
+import {LandmarkAction, Landmark} from '../actions/landmarkActions';
+import {INITIALIZE_LANDMARKS, LIKE_LANDMARK} from '../actions/types';
 
-interface LandmarkState {
-  landmarkLiked: boolean;
+interface Landmarks {
+  landmarks: Array<Landmark>;
 }
 
-const INITIAL_STATE: LandmarkState = {
-  landmarkLiked: false,
+const INITIAL_STATE: Landmarks = {
+  landmarks: [],
 };
 
-export default (state = INITIAL_STATE, action: PayloadAction<number>) => {
+export default (state = INITIAL_STATE, action: LandmarkAction) => {
   switch (action.type) {
+    case INITIALIZE_LANDMARKS:
+      return {...state, landmarks: action.payload};
     case LIKE_LANDMARK:
-      return {...state, landmarkLiked: true};
+      const landmarkId = action.payload;
+      return {
+        ...state,
+        landmarks: state.landmarks.map(el =>
+          el.id === landmarkId ? {...el, isLiked: !el.isLiked} : el,
+        ),
+      };
     default:
       return state;
   }

@@ -3,19 +3,9 @@ import {StyleSheet, FlatList, Animated, ScrollView} from 'react-native';
 import {getHeight, getWidth} from '../../utils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 import {whiteBg} from '../../themes/colors';
-
-interface Data {
-  data: {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-    latlng: {
-      latitude: number;
-      longitude: number;
-    };
-  };
-}
+import {RootState} from '../../store/store';
+import {useSelector, useDispatch} from 'react-redux';
+import {likeLandmark} from '../../actions';
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -34,49 +24,53 @@ const renderItem = ({item}) => (
     id={item.id}
     uri={item.image}
     description={item.description}
+    isLiked={item.isLiked}
   />
 );
 
-const LandmarkList: React.FC<Data> = ({data}) => {
+const LandmarkList: React.FC = () => {
+  const dispatch = useDispatch();
+  const {landmarks} = useSelector((state: RootState) => state.landmarksReducer);
+  console.log('mordor', landmarks);
+
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     // this.flatListRef.scrollToIndex({animated: true, index: '3'});
+    // dispatch(likeLandmark(1));
   }, []);
 
   return (
-    data && (
-      <ScrollView
-        style={styles.listContainer}
-        contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
-        decelerationRate={0}
-        onScroll={Animated.event([
-          {
-            nativeEvent: {
-              contentOffset: {
-                x: scrollX,
-              },
+    <ScrollView
+      style={styles.listContainer}
+      contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
+      decelerationRate={0}
+      onScroll={Animated.event([
+        {
+          nativeEvent: {
+            contentOffset: {
+              x: scrollX,
             },
           },
-        ])}
-        scrollEventThrottle={1}>
-        <FlatList
-          ref={ref => {
-            flatListRef = ref;
-          }}
-          contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
-          data={data}
-          renderItem={renderItem}
-          horizontal={true}
-          keyExtractor={item => item.id}
-          snapToInterval={300}
-          snapToAlignment="center"
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          scrollToIndex={2}
-        />
-      </ScrollView>
-    )
+        },
+      ])}
+      scrollEventThrottle={1}>
+      <FlatList
+        ref={ref => {
+          flatListRef = ref;
+        }}
+        contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
+        data={landmarks}
+        renderItem={renderItem}
+        horizontal={true}
+        keyExtractor={item => item.id}
+        snapToInterval={300}
+        snapToAlignment="center"
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        scrollToIndex={2}
+      />
+    </ScrollView>
   );
 };
 
