@@ -4,8 +4,7 @@ import {getHeight, getWidth} from '../../utils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 import {whiteBg} from '../../themes/colors';
 import {RootState} from '../../store/store';
-import {useSelector, useDispatch} from 'react-redux';
-import {likeLandmark} from '../../actions';
+import {useSelector} from 'react-redux';
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -29,15 +28,12 @@ const renderItem = ({item}) => (
 );
 
 const LandmarkList: React.FC = () => {
-  const dispatch = useDispatch();
   const {landmarks} = useSelector((state: RootState) => state.landmarksReducer);
-  console.log('mordor', landmarks);
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     // this.flatListRef.scrollToIndex({animated: true, index: '3'});
-    // dispatch(likeLandmark(1));
   }, []);
 
   return (

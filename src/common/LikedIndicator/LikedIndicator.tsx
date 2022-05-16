@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {likeLandmark} from '../../actions';
+import {RootState} from '../../store/store';
 import {whiteBg, red} from '../../themes/colors';
 
 const styles = StyleSheet.create({
@@ -19,17 +20,19 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  liked: boolean;
   id: number;
 }
 
-const LikedIndicator: React.FC<Props> = ({liked, id}) => {
+const LikedIndicator: React.FC<Props> = ({id}) => {
+  const {landmarks} = useSelector((state: RootState) => state.landmarksReducer);
+  const isLiked = landmarks.filter(el => el.id === id)[0].isLiked;
+
   const dispatch = useDispatch();
   return (
     <TouchableOpacity
       style={styles.heartContainer}
       onPress={() => dispatch(likeLandmark(id))}>
-      {liked ? (
+      {isLiked ? (
         <Icon name="heart" size={20} color={red} />
       ) : (
         <Icon name="heart-alt" size={20} color={red} />

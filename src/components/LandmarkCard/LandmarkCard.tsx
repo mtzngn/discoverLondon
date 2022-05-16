@@ -43,16 +43,15 @@ interface Props {
   isLiked: boolean;
 }
 export type RootStackParamList = {
-  CardDetails: {name: string; id: number; uri: string; description: string};
+  CardDetails: {
+    name: string;
+    id: number;
+    uri: string;
+    description: string;
+  };
 };
 
-const LandmarkCard: React.FC<Props> = ({
-  name,
-  id,
-  uri,
-  description,
-  isLiked,
-}) => {
+const LandmarkCard: React.FC<Props> = ({name, id, uri, description}) => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const onPress = () => {
     navigation.navigate('CardDetails', {name, id, uri, description});
@@ -64,7 +63,7 @@ const LandmarkCard: React.FC<Props> = ({
       </SharedElement>
       <View style={styles.cardOverlay}>
         <Text style={styles.cardTitle}>{name}</Text>
-        <LikedIndicator liked={isLiked} id={id} />
+        <LikedIndicator id={id} />
       </View>
     </TouchableOpacity>
   );

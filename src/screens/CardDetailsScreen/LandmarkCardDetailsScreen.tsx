@@ -3,7 +3,6 @@ import {
   View,
   Image,
   StyleSheet,
-  Text,
   TouchableOpacity,
   Animated,
 } from 'react-native';
@@ -11,6 +10,7 @@ import {SharedElement} from 'react-navigation-shared-element';
 import {getWidth, getHeight} from '../../utils';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {blue, whiteBg, darkShadow} from '../../themes/colors';
+import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
 
 const styles = StyleSheet.create({
   screenContainer: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
-  const {name, id, uri, description} = route.params;
+  const {name, id, uri, description, isLiked} = route.params;
   const mountedAnimated = useRef(new Animated.Value(0)).current;
 
   const animation = (toValue, delay) =>
@@ -70,6 +70,15 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
   });
   return (
     <View style={styles.screenContainer}>
+      <View
+        style={{
+          position: 'absolute',
+          left: 320,
+          top: 50,
+          zIndex: 10,
+        }}>
+        <LikedIndicator id={id} liked={isLiked} />
+      </View>
       <SharedElement id={`item.${id}.photo`}>
         <Image source={{uri}} style={styles.cardImage} />
       </SharedElement>
