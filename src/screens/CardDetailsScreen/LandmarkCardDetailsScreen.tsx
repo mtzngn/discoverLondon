@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CardDetailsScreen: React.FC = ({route, navigation}) => {
+const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
   const {name, id, uri, description} = route.params;
   const mountedAnimated = useRef(new Animated.Value(0)).current;
 
@@ -102,4 +102,4 @@ const CardDetailsScreen: React.FC = ({route, navigation}) => {
   );
 };
 
-export default CardDetailsScreen;
+export default LandCardDetailsScreen;

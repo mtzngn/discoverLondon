@@ -1,17 +1,19 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {StyleSheet, FlatList, Animated, ScrollView} from 'react-native';
 import {getHeight, getWidth} from '../../utils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 import {whiteBg} from '../../themes/colors';
 
 interface Data {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  latlng: {
-    latitude: number;
-    longitude: number;
+  data: {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    latlng: {
+      latitude: number;
+      longitude: number;
+    };
   };
 }
 
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderItem = ({item}: any) => (
+const renderItem = ({item}) => (
   <LandmarkCard
     name={item.name}
     id={item.id}
@@ -35,8 +37,12 @@ const renderItem = ({item}: any) => (
   />
 );
 
-const LandmarkList: React.FC<Array<Data>> = ({data}) => {
+const LandmarkList: React.FC<Data> = ({data}) => {
   const scrollX = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // this.flatListRef.scrollToIndex({animated: true, index: '3'});
+  }, []);
 
   return (
     data && (
@@ -55,6 +61,9 @@ const LandmarkList: React.FC<Array<Data>> = ({data}) => {
         ])}
         scrollEventThrottle={1}>
         <FlatList
+          ref={ref => {
+            flatListRef = ref;
+          }}
           contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
           data={data}
           renderItem={renderItem}
@@ -64,6 +73,7 @@ const LandmarkList: React.FC<Array<Data>> = ({data}) => {
           snapToAlignment="center"
           pagingEnabled
           showsHorizontalScrollIndicator={false}
+          scrollToIndex={2}
         />
       </ScrollView>
     )

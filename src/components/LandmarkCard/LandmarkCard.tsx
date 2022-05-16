@@ -4,6 +4,7 @@ import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
 import {lightText} from '../../themes/colors';
 import {SharedElement} from 'react-navigation-shared-element';
 import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -40,11 +41,13 @@ interface Props {
   uri: string;
   description: string;
 }
+export type RootStackParamList = {
+  CardDetails: {name: string; id: number; uri: string; description: string};
+};
 
 const LandmarkCard: React.FC<Props> = ({name, id, uri, description}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const onPress = () => {
-    console.log('card pressed');
     navigation.navigate('CardDetails', {name, id, uri, description});
   };
   return (
@@ -54,7 +57,7 @@ const LandmarkCard: React.FC<Props> = ({name, id, uri, description}) => {
       </SharedElement>
       <View style={styles.cardOverlay}>
         <Text style={styles.cardTitle}>{name}</Text>
-        <LikedIndicator />
+        <LikedIndicator liked={true} />
       </View>
     </TouchableOpacity>
   );
