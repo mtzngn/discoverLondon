@@ -1,4 +1,4 @@
-import {LIKE_LANDMARK, INITIALIZE_LANDMARKS} from './types';
+import {LIKE_LANDMARK, INITIALIZE_LANDMARKS, SELECT_LANDMARK} from './types';
 
 export interface Landmark {
   id: number;
@@ -10,7 +10,7 @@ export interface Landmark {
     longtitude: number;
   };
   isLiked: boolean;
-  isFocused: boolean;
+  isSelected: boolean;
 }
 
 export interface InitializeAction {
@@ -23,6 +23,11 @@ export interface LikeAction {
   payload: number;
 }
 
+export interface SelectAction {
+  readonly type: 'SELECT_LANDMARK';
+  payload: number;
+}
+
 export const initializeLandmarks = (payload: any) => {
   return {type: INITIALIZE_LANDMARKS, payload};
 };
@@ -31,4 +36,8 @@ export const likeLandmark = (payload: number) => {
   return {type: LIKE_LANDMARK, payload};
 };
 
-export type LandmarkAction = InitializeAction | LikeAction;
+export const selectLandmark = (payload: number) => {
+  return {type: SELECT_LANDMARK, payload};
+};
+
+export type LandmarkAction = InitializeAction | LikeAction | SelectAction;

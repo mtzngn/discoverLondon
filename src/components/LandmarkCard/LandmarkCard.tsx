@@ -40,7 +40,6 @@ interface Props {
   id: number;
   uri: string;
   description: string;
-  isLiked: boolean;
 }
 export type RootStackParamList = {
   CardDetails: {
@@ -58,6 +57,7 @@ const LandmarkCard: React.FC<Props> = ({name, id, uri, description}) => {
   };
   return (
     <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
+      {/* eslint-disable-next-line react-native/no-inline-styles */}
       <SharedElement id={`item.${id}.photo`} style={{width: 280, height: 200}}>
         <Image style={styles.cardImage} source={{uri}} />
       </SharedElement>

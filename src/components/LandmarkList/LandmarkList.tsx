@@ -23,7 +23,6 @@ const renderItem = ({item}) => (
     id={item.id}
     uri={item.image}
     description={item.description}
-    isLiked={item.isLiked}
   />
 );
 
@@ -33,8 +32,9 @@ const LandmarkList: React.FC = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // this.flatListRef.scrollToIndex({animated: true, index: '3'});
-  }, []);
+    // const selectedLandmarkId = landmarks.filter(el => el.isSelected)[0].id;
+    // flatListRef.scrollToIndex({animated: true, index: selectedLandmarkId - 1});
+  }, [landmarks]);
 
   return (
     <ScrollView
@@ -64,7 +64,6 @@ const LandmarkList: React.FC = () => {
         snapToAlignment="center"
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        scrollToIndex={2}
       />
     </ScrollView>
   );

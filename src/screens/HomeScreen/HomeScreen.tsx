@@ -11,7 +11,7 @@ const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(initializeLandmarks(londonLandmarks));
-  }, []);
+  });
 
   return (
     <View>
