@@ -3,12 +3,10 @@ import {INITIALIZE_LANDMARKS, LIKE_LANDMARK, SELECT_LANDMARK} from '../actions';
 
 interface Landmarks {
   landmarks: Array<Landmark>;
-  tracksViewChanges: boolean;
 }
 
 const INITIAL_STATE: Landmarks = {
   landmarks: [],
-  tracksViewChanges: false,
 };
 
 export default (state = INITIAL_STATE, action: LandmarkAction) => {

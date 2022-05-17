@@ -40,8 +40,13 @@ const LandmarkList: React.FC = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // const selectedLandmarkId = landmarks.filter(el => el.isSelected)[0].id;
-    // flatListRef.scrollToIndex({animated: true, index: selectedLandmarkId - 1});
+    // const selectedLandmarkId = landmarks.filter(el => el.isSelected)[0]
+    //   .id;
+    // flatListRef.scrollToIndex({
+    //   animated: true,
+    //   index: selectedLandmarkId - 1,
+    //   viewOffset: 40,
+    // });
   }, [landmarks]);
 
   return (
