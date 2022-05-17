@@ -8,8 +8,8 @@ import {useSelector} from 'react-redux';
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginTop: getHeight() * 0.65,
-    height: getHeight() * 0.35,
+    marginTop: getHeight() * 0.7,
+    height: getHeight() * 0.3,
     width: getWidth(),
     position: 'absolute',
     backgroundColor: whiteBg,

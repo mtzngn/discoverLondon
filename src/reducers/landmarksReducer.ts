@@ -1,9 +1,5 @@
 import {LandmarkAction, Landmark} from '../actions/landmarkActions';
-import {
-  INITIALIZE_LANDMARKS,
-  LIKE_LANDMARK,
-  SELECT_LANDMARK,
-} from '../actions/types';
+import {INITIALIZE_LANDMARKS, LIKE_LANDMARK, SELECT_LANDMARK} from '../actions';
 
 interface Landmarks {
   landmarks: Array<Landmark>;

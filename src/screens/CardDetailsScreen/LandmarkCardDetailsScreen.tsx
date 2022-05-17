@@ -55,7 +55,7 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
   const animation = (toValue, delay) =>
     Animated.timing(mountedAnimated, {
       toValue,
-      duration: 500,
+      duration: 200,
       delay,
       useNativeDriver: true,
     });
