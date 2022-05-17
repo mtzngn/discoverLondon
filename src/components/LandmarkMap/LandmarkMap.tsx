@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {getHeight, getWidth} from '../../utils';
@@ -34,7 +34,16 @@ const styles = StyleSheet.create({
 
 const LandmarkMap: React.FC = () => {
   const {landmarks} = useSelector((state: RootState) => state.landmarksReducer);
-  console.log('didChange', landmarks);
+  const [shouldTrack, setTrack] = useState(false);
+
+  useEffect(() => {
+    setTrack(true);
+    const timeout = setTimeout(() => {
+      setTrack(false);
+    }, 1);
+    return () => clearInterval(timeout);
+  }, [landmarks]);
+
   const dispatch = useDispatch();
 
   return (
@@ -51,7 +60,7 @@ const LandmarkMap: React.FC = () => {
         {landmarks.map(el => {
           return (
             <Marker
-              tracksViewChanges={false}
+              tracksViewChanges={shouldTrack}
               onPress={() => dispatch(selectLandmark(el.id))}
               tappable
               coordinate={{
