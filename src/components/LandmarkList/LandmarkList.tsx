@@ -16,8 +16,16 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
 });
+interface ItemProps {
+  item: {
+    name: string;
+    id: number;
+    image: string;
+    description: string;
+  };
+}
 
-const renderItem = ({item}) => (
+const renderItem = ({item}: ItemProps) => (
   <LandmarkCard
     name={item.name}
     id={item.id}

@@ -52,7 +52,7 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
   const {name, id, uri, description, isLiked} = route.params;
   const mountedAnimated = useRef(new Animated.Value(0)).current;
 
-  const animation = (toValue, delay) =>
+  const animation = (toValue: number, delay: number) =>
     Animated.timing(mountedAnimated, {
       toValue,
       duration: 200,

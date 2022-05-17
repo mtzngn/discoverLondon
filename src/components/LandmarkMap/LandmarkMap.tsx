@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Fontisto';
 import {red, gray, blue} from '../../themes/colors';
 import {RootState} from '../../store/store';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectLandmark, stopTrackingViews} from '../../actions';
+import {selectLandmark} from '../../actions';
 
 const styles = StyleSheet.create({
   container: {

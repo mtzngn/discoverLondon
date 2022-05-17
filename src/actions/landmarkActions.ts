@@ -1,3 +1,5 @@
+import {createAction} from '@reduxjs/toolkit';
+
 export const INITIALIZE_LANDMARKS: string = 'initialize_landmarks';
 export const LIKE_LANDMARK: string = 'like_landmark';
 export const SELECT_LANDMARK: string = 'select_landmark';
@@ -30,16 +32,8 @@ export interface SelectAction {
   payload: number;
 }
 
-export const initializeLandmarks = (payload: any) => {
-  return {type: INITIALIZE_LANDMARKS, payload};
-};
-
-export const likeLandmark = (payload: number) => {
-  return {type: LIKE_LANDMARK, payload};
-};
-
-export const selectLandmark = (payload: number) => {
-  return {type: SELECT_LANDMARK, payload};
-};
+export const initializeLandmarks = createAction(INITIALIZE_LANDMARKS);
+export const likeLandmark = createAction(LIKE_LANDMARK);
+export const selectLandmark = createAction(SELECT_LANDMARK);
 
 export type LandmarkAction = InitializeAction | LikeAction | SelectAction;
