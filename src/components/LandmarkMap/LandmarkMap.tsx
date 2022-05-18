@@ -33,7 +33,10 @@ const styles = StyleSheet.create({
 });
 
 const LandmarkMap: React.FC = () => {
-  const {landmarks} = useSelector((state: RootState) => state.landmarksReducer);
+  const {markerDetails} = useSelector(
+    (state: RootState) => state.landmarksReducer,
+  );
+  console.log('MAPRENDERED');
 
   const dispatch = useDispatch();
 
@@ -48,7 +51,7 @@ const LandmarkMap: React.FC = () => {
           latitudeDelta: 0.14,
           longitudeDelta: 0.0121,
         }}>
-        {landmarks.map(el => {
+        {markerDetails.map(el => {
           return (
             <Marker
               tracksViewChanges={false}
@@ -59,7 +62,6 @@ const LandmarkMap: React.FC = () => {
                 longitude: el.latlng.longitude,
               }}
               key={`marker${el.id}`}>
-              {console.log(`key=marker${el.id}${el.isLiked}`)}
               <View style={styles.landmarkIconContainer}>
                 <Icon
                   name="map-marker-alt"

@@ -2,22 +2,27 @@ import {LandmarkAction, Landmark} from '../actions/landmarkActions';
 import {INITIALIZE_LANDMARKS, LIKE_LANDMARK, SELECT_LANDMARK} from '../actions';
 
 interface Landmarks {
-  landmarks: Array<Landmark>;
+  markerDetails: Array<Landmark>;
 }
 
 const INITIAL_STATE: Landmarks = {
-  landmarks: [],
+  markerDetails: [],
+  cardDetails: [],
 };
 
 export default (state = INITIAL_STATE, action: LandmarkAction) => {
   switch (action.type) {
     case INITIALIZE_LANDMARKS:
-      return {...state, landmarks: action.payload};
+      return {
+        ...state,
+        markerDetails: action.payload.markerDetails,
+        cardDetails: action.payload.cardDetails,
+      };
     case LIKE_LANDMARK:
       const likedLanmarkId = action.payload;
       return {
         ...state,
-        landmarks: state.landmarks.map(el =>
+        markerDetails: state.markerDetails.map(el =>
           el.id === likedLanmarkId ? {...el, isLiked: !el.isLiked} : el,
         ),
       };
@@ -25,7 +30,7 @@ export default (state = INITIAL_STATE, action: LandmarkAction) => {
       const selectedLandmarkId = action.payload;
       return {
         ...state,
-        landmarks: state.landmarks.map(el =>
+        markerDetails: state.markerDetails.map(el =>
           el.id === selectedLandmarkId
             ? {...el, isSelected: true}
             : {...el, isSelected: false},

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
-  const {name, id, uri, description, isLiked} = route.params;
+  const {name, id, uri, description} = route.params;
   const mountedAnimated = useRef(new Animated.Value(0)).current;
 
   const animation = (toValue: number, delay: number) =>
@@ -61,6 +61,7 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
     });
 
   useEffect(() => {
+    console.log('CARDDETAILSRENDERED');
     animation(1, 300).start();
   }, []);
 
@@ -77,7 +78,7 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
           top: 50,
           zIndex: 10,
         }}>
-        <LikedIndicator id={id} liked={isLiked} />
+        <LikedIndicator id={id} />
       </View>
       <SharedElement id={`item.${id}.photo`}>
         <Image source={{uri}} style={styles.cardImage} />

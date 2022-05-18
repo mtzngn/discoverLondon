@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {useDispatch, useSelector} from 'react-redux';
 import {likeLandmark} from '../../actions';
@@ -24,16 +24,34 @@ interface Props {
 }
 
 const LikedIndicator: React.FC<Props> = ({id}) => {
-  const {landmarks} = useSelector((state: RootState) => state.landmarksReducer);
-  const isLiked = landmarks.filter(el => el.id === id)[0].isLiked;
+  // console.log('LIKEDRENDRED');
+  const {markerDetails} = useSelector(
+    (state: RootState) => state.landmarksReducer,
+  );
+  const isLiked = markerDetails.filter(el => el.id === id)[0].isLiked;
+
+  const currentValue = new Animated.Value(0);
 
   const dispatch = useDispatch();
+  const AnimatedIcon = Animated.createAnimatedComponent(Icon);
   return (
     <TouchableOpacity
       style={styles.heartContainer}
       onPress={() => dispatch(likeLandmark(id))}>
       {isLiked ? (
-        <Icon name="heart" size={20} color={red} />
+        <AnimatedIcon
+          name="heart"
+          size={20}
+          color={red}
+          onLoad={Animated.spring(currentValue, {
+            toValue: 1,
+            friction: 5,
+            useNativeDriver: true,
+          }).start()}
+          style={{
+            transform: [{scale: currentValue}],
+          }}
+        />
       ) : (
         <Icon name="heart-alt" size={20} color={red} />
       )}

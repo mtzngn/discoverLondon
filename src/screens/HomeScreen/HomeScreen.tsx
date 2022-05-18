@@ -10,14 +10,28 @@ import {useDispatch} from 'react-redux';
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const landmarksWithFieldsAdded = londonLandmarks.map(el => {
+    console.log('HOMERENDERED');
+    const markerDetails = londonLandmarks.map(el => {
       return {
-        ...el,
+        latlng: {
+          latitude: el.latlng.latitude,
+          longitude: el.latlng.longitude,
+        },
         isLiked: false,
         isSelected: false,
+        id: el.id,
       };
     });
-    dispatch(initializeLandmarks(landmarksWithFieldsAdded));
+    const cardDetails = londonLandmarks.map(el => {
+      return {
+        name: el.name,
+        id: el.id,
+        uri: el.image,
+        description: el.description,
+      };
+    });
+
+    dispatch(initializeLandmarks({markerDetails, cardDetails}));
   });
 
   return (

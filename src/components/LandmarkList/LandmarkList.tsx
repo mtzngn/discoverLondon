@@ -20,7 +20,7 @@ interface ItemProps {
   item: {
     name: string;
     id: number;
-    image: string;
+    uri: string;
     description: string;
   };
 }
@@ -29,47 +29,57 @@ const renderItem = ({item}: ItemProps) => (
   <LandmarkCard
     name={item.name}
     id={item.id}
-    uri={item.image}
+    uri={item.uri}
     description={item.description}
   />
 );
 
 const LandmarkList: React.FC = () => {
-  const {landmarks} = useSelector((state: RootState) => state.landmarksReducer);
+  const {cardDetails} = useSelector(
+    (state: RootState) => state.landmarksReducer,
+  );
+  // const {markerDetails} = useSelector(
+  //   (state: RootState) => state.landmarksReducer,
+  // );
+  console.log('LISTRENDRED');
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  useEffect(() => {
-    // const selectedLandmarkId = landmarks.filter(el => el.isSelected)[0]
-    //   .id;
-    // flatListRef.scrollToIndex({
-    //   animated: true,
-    //   index: selectedLandmarkId - 1,
-    //   viewOffset: 40,
-    // });
-  }, [landmarks]);
+  // useEffect(() => {
+  //   const selectedLandmarkId = markerDetails.filter(el => el.isSelected)[0].id;
+  //   flatListRef.scrollToIndex({
+  //     animated: true,
+  //     index: selectedLandmarkId - 1,
+  //     viewOffset: 40,
+  //   });
+  // }, [markerDetails]);
 
   return (
     <ScrollView
       style={styles.listContainer}
       contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
       decelerationRate={0}
-      onScroll={Animated.event([
-        {
-          nativeEvent: {
-            contentOffset: {
-              x: scrollX,
+      onScroll={Animated.event(
+        [
+          {
+            nativeEvent: {
+              contentOffset: {
+                x: scrollX,
+              },
             },
           },
+        ],
+        {
+          useNativeDriver: false,
         },
-      ])}
+      )}
       scrollEventThrottle={1}>
       <FlatList
         ref={ref => {
           flatListRef = ref;
         }}
         contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
-        data={landmarks}
+        data={cardDetails}
         renderItem={renderItem}
         horizontal={true}
         keyExtractor={item => item.id}
