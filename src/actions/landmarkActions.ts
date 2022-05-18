@@ -4,11 +4,8 @@ export const INITIALIZE_LANDMARKS: string = 'initialize_landmarks';
 export const LIKE_LANDMARK: string = 'like_landmark';
 export const SELECT_LANDMARK: string = 'select_landmark';
 
-export interface Landmark {
+export interface MarkerDetails {
   id: number;
-  name: string;
-  description: string;
-  image: string;
   latlng: {
     latitude: number;
     longtitude: number;
@@ -17,9 +14,20 @@ export interface Landmark {
   isSelected: boolean;
 }
 
+export interface CardDetails {
+  id: number;
+  name: string;
+  uri: string;
+  description: string;
+}
+interface Initialize {
+  markerDetails: MarkerDetails[];
+  cardDetails: CardDetails[];
+}
+
 export interface InitializeAction {
   readonly type: 'INITIALIZE_LANDMARKS';
-  payload: Array<Landmark>;
+  payload: Initialize;
 }
 
 export interface LikeAction {

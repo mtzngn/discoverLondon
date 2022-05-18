@@ -5,6 +5,7 @@ import {lightText} from '../../themes/colors';
 import {SharedElement} from 'react-navigation-shared-element';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {CardDetails} from '../../actions';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -35,12 +36,6 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Props {
-  name: string;
-  id: number;
-  uri: string;
-  description: string;
-}
 export type RootStackParamList = {
   CardDetails: {
     name: string;
@@ -50,7 +45,7 @@ export type RootStackParamList = {
   };
 };
 
-const LandmarkCard: React.FC<Props> = ({name, id, uri, description}) => {
+const LandmarkCard: React.FC<CardDetails> = ({name, id, uri, description}) => {
   // console.log('CARDRENDERED');
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const onPress = () => {

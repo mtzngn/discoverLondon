@@ -1,8 +1,13 @@
-import {LandmarkAction, Landmark} from '../actions/landmarkActions';
+import {
+  LandmarkAction,
+  MarkerDetails,
+  CardDetails,
+} from '../actions/landmarkActions';
 import {INITIALIZE_LANDMARKS, LIKE_LANDMARK, SELECT_LANDMARK} from '../actions';
 
 interface Landmarks {
-  markerDetails: Array<Landmark>;
+  markerDetails: Array<MarkerDetails>;
+  cardDetails: Array<CardDetails>;
 }
 
 const INITIAL_STATE: Landmarks = {
