@@ -2,35 +2,54 @@ import React from 'react';
 import {render} from '@testing-library/react-native';
 import HomeScreen from '../HomeScreen';
 
-jest.mock('react-native-maps', () => {
-  const {View} = require('react-native');
-  const MockMapView = (props: any) => {
-    return <View>{props.children}</View>;
-  };
-  const MockMarker = (props: any) => {
-    return <View>{props.children}</View>;
-  };
-  return {
-    __esModule: true,
-    default: MockMapView,
-    Marker: MockMarker,
-  };
-});
-
+const mockUseDispatch = jest.fn();
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
-  useDispatch: jest.fn().mockImplementation(jest.fn),
+  useDispatch: jest.fn().mockImplementation(() => mockUseDispatch),
   useSelector: jest
     .fn()
     .mockImplementation(jest.fn)
-    .mockReturnValue({markerDetails: [], cardDetails: []}),
+    .mockReturnValue({
+      markerDetails: [
+        {
+          id: 1,
+          isLliked: false,
+          isSelected: false,
+          latlng: {
+            latitude: 51.50890357879391,
+            longitude: -0.12850203078005293,
+          },
+        },
+      ],
+      cardDetails: [
+        {
+          name: 'testName',
+          id: 1,
+          uri: 'testUri',
+          description: 'testDescription',
+        },
+      ],
+    }),
 }));
 
-jest.mock('react-native-vector-icons/Fontisto', () => 'hello');
-jest.mock('react-navigation-shared-element', () => 'hello');
+jest.mock('@react-navigation/native', () => {
+  const actualNav = jest.requireActual('@react-navigation/native');
+  return {
+    ...actualNav,
+    useNavigation: () => ({
+      navigate: jest.fn(),
+    }),
+  };
+});
 
-describe('first test', () => {
-  it('should return true', () => {
+describe('HomeScreen', () => {
+  it('should render', () => {
     const {getByText} = render(<HomeScreen />);
+    expect(getByText('testName')).toBeTruthy();
+  });
+
+  it('should dispatch the initialization action', () => {
+    render(<HomeScreen />);
+    expect(mockUseDispatch).toHaveBeenCalled();
   });
 });
