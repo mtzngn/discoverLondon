@@ -46,6 +46,12 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  likedContainer: {
+    position: 'absolute',
+    left: 320,
+    top: 50,
+    zIndex: 10,
+  },
 });
 
 const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
@@ -57,7 +63,7 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
       toValue,
       duration: 200,
       delay,
-      useNativeDriver: true,
+      useNativeDriver: false,
     });
 
   useEffect(() => {
@@ -71,23 +77,17 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
   });
   return (
     <View style={styles.screenContainer}>
-      <View
-        style={{
-          position: 'absolute',
-          left: 320,
-          top: 50,
-          zIndex: 10,
-        }}>
+      <View style={styles.likedContainer}>
         <LikedIndicator id={id} />
       </View>
       <SharedElement id={`item.${id}.photo`}>
         <Image source={{uri}} style={styles.cardImage} />
       </SharedElement>
       <TouchableOpacity
+        testID={'angleDownButton'}
         onPress={() => {
-          animation(0).start(() => {
-            navigation.goBack();
-          });
+          animation(0).start();
+          navigation.goBack();
         }}
         style={styles.backButtonContainer}>
         <Icon name="angle-down" size={20} color={blue} />
