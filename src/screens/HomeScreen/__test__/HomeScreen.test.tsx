@@ -13,7 +13,7 @@ jest.mock('react-redux', () => ({
       markerDetails: [
         {
           id: 1,
-          isLliked: false,
+          isLiked: false,
           isSelected: false,
           latlng: {
             latitude: 51.50890357879391,

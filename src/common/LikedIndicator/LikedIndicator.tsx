@@ -43,6 +43,7 @@ const LikedIndicator: React.FC<Props> = ({id}) => {
           name="heart"
           size={20}
           color={red}
+          testID={'heartIcon'}
           onLoad={Animated.spring(currentValue, {
             toValue: 1,
             friction: 5,
@@ -53,7 +54,7 @@ const LikedIndicator: React.FC<Props> = ({id}) => {
           }}
         />
       ) : (
-        <Icon name="heart-alt" size={20} color={red} />
+        <Icon name="heart-alt" size={20} color={red} testID={'heartAltIcon'} />
       )}
     </TouchableOpacity>
   );
