@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import {getHeight, getWidth} from '../../utils';
+import {getHeight, getWidth, isAndroid} from '../../utils';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {red, gray, blue} from '../../themes/colors';
 import {RootState} from '../../store/store';
@@ -36,14 +36,12 @@ const LandmarkMap: React.FC = () => {
   const {markerDetails} = useSelector(
     (state: RootState) => state.landmarksReducer,
   );
-  console.log('MAPRENDERED');
-
   const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
       <MapView
-        // provider={PROVIDER_GOOGLE}
+        provider={isAndroid() ? PROVIDER_GOOGLE : null}
         style={styles.map}
         initialRegion={{
           latitude: 51.500782626551675,
@@ -67,6 +65,7 @@ const LandmarkMap: React.FC = () => {
                   name="map-marker-alt"
                   size={60}
                   color={el.isSelected ? blue : gray}
+                  testID={'markerIcon'}
                 />
                 {el.isLiked && (
                   <Icon

@@ -69,7 +69,7 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
   useEffect(() => {
     console.log('CARDDETAILSRENDERED');
     animation(1, 300).start();
-  }, []);
+  });
 
   const translateY = mountedAnimated.interpolate({
     inputRange: [0, 1],
@@ -86,7 +86,7 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
       <TouchableOpacity
         testID={'angleDownButton'}
         onPress={() => {
-          animation(0).start();
+          animation(0, 1).start();
           navigation.goBack();
         }}
         style={styles.backButtonContainer}>

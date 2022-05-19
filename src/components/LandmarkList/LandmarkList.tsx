@@ -38,10 +38,11 @@ const LandmarkList: React.FC = () => {
   const {cardDetails} = useSelector(
     (state: RootState) => state.landmarksReducer,
   );
+
   // const {markerDetails} = useSelector(
   //   (state: RootState) => state.landmarksReducer,
   // );
-  console.log('LISTRENDRED');
+  console.log('LISTRENDRED', cardDetails);
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
