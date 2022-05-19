@@ -39,20 +39,21 @@ const LandmarkList: React.FC = () => {
     (state: RootState) => state.landmarksReducer,
   );
 
-  // const {markerDetails} = useSelector(
-  //   (state: RootState) => state.landmarksReducer,
-  // );
-  console.log('LISTRENDRED', cardDetails);
+  const {markerDetails} = useSelector(
+    (state: RootState) => state.landmarksReducer,
+  );
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
   // useEffect(() => {
-  //   const selectedLandmarkId = markerDetails.filter(el => el.isSelected)[0].id;
-  //   flatListRef.scrollToIndex({
-  //     animated: true,
-  //     index: selectedLandmarkId - 1,
-  //     viewOffset: 40,
-  //   });
+  //   const selectedLandmarkId = markerDetails?.filter(el => el?.isSelected)[0]
+  //     ?.id;
+  //   selectedLandmarkId &&
+  //     flatListRef.scrollToIndex({
+  //       animated: true,
+  //       index: selectedLandmarkId - 1,
+  //       viewOffset: 40,
+  //     });
   // }, [markerDetails]);
 
   return (

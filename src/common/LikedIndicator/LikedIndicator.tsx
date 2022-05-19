@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, StyleSheet, TouchableOpacity, Animated} from 'react-native';
+import React from 'react';
+import {StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {useDispatch, useSelector} from 'react-redux';
 import {likeLandmark} from '../../actions';
@@ -24,7 +24,6 @@ interface Props {
 }
 
 const LikedIndicator: React.FC<Props> = ({id}) => {
-  // console.log('LIKEDRENDRED');
   const {markerDetails} = useSelector(
     (state: RootState) => state.landmarksReducer,
   );

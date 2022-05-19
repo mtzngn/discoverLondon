@@ -58,7 +58,9 @@ const LandmarkCard: React.FC<CardDetails> = ({name, id, uri, description}) => {
       </SharedElement>
       <View style={styles.cardOverlay}>
         <Text style={styles.cardTitle}>{name}</Text>
-        <LikedIndicator id={id} />
+        <SharedElement id={`item.${id}.liked`}>
+          <LikedIndicator id={id} />
+        </SharedElement>
       </View>
     </TouchableOpacity>
   );

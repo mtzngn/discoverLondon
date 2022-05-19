@@ -10,7 +10,6 @@ import {useDispatch} from 'react-redux';
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log('HOMERENDERED');
     const markerDetails = londonLandmarks.map(el => {
       return {
         latlng: {

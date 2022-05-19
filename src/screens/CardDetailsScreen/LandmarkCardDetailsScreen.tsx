@@ -67,7 +67,6 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
     });
 
   useEffect(() => {
-    console.log('CARDDETAILSRENDERED');
     animation(1, 300).start();
   });
 
@@ -78,7 +77,9 @@ const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
   return (
     <View style={styles.screenContainer}>
       <View style={styles.likedContainer}>
-        <LikedIndicator id={id} />
+        <SharedElement id={`item.${id}.liked`}>
+          <LikedIndicator id={id} />
+        </SharedElement>
       </View>
       <SharedElement id={`item.${id}.photo`}>
         <Image source={{uri}} style={styles.cardImage} />

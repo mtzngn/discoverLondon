@@ -19,7 +19,7 @@ const App: React.FC = () => {
           component={CardDetailsScreen}
           sharedElements={route => {
             const {id} = route.params;
-            return [`item.${id}.photo`];
+            return [`item.${id}.photo`, `item.${id}.liked`];
           }}
           options={() => ({
             gestureEnabled: false,
