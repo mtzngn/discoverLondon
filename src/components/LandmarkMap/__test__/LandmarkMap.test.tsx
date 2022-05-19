@@ -60,7 +60,7 @@ jest.mock('react-redux', () => ({
     }),
 }));
 
-describe('LandmarkCardDetailsScreen', () => {
+describe('LandmarkMap', () => {
   describe('renders', () => {
     it('all the markers ', () => {
       const {getAllByTestId} = render(<LandmarkMap />);

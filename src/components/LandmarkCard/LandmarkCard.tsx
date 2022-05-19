@@ -46,7 +46,6 @@ export type RootStackParamList = {
 };
 
 const LandmarkCard: React.FC<CardDetails> = ({name, id, uri, description}) => {
-  // console.log('CARDRENDERED');
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const onPress = () => {
     navigation.navigate('CardDetails', {name, id, uri, description});

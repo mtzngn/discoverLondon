@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {StyleSheet, FlatList, Animated, ScrollView} from 'react-native';
-import {getHeight, getWidth} from '../../utils';
+import {getHeight, getWidth} from '../../utils/generalUtils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 import {whiteBg} from '../../themes/colors';
 import {RootState} from '../../store/store';
