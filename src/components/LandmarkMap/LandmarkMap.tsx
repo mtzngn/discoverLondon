@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
-import {getHeight, getWidth, isAndroid} from '../../utils';
+import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {red, gray, blue} from '../../themes/colors';
 import {RootState} from '../../store/store';

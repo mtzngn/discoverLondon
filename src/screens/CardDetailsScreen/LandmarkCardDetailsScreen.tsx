@@ -7,7 +7,7 @@ import {
   Animated,
 } from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
-import {getWidth, getHeight} from '../../utils';
+import {getWidth, getHeight} from '../../utils/generalUtils';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {blue, whiteBg, darkShadow} from '../../themes/colors';
 import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
