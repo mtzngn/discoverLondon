@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Fontisto';
 import {red, gray, blue} from '../../themes/colors';
 import {RootState} from '../../store/store';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectLandmark} from '../../actions';
+import {selectLandmark, MarkerDetails, LikedCards} from '../../actions';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,9 +39,6 @@ const LandmarkMap: React.FC = () => {
   const {likedCards} = useSelector(
     (state: RootState) => state.landmarksReducer,
   );
-  const {selectedCards} = useSelector(
-    (state: RootState) => state.landmarksReducer,
-  );
   const dispatch = useDispatch();
 
   return (
@@ -55,7 +52,7 @@ const LandmarkMap: React.FC = () => {
           latitudeDelta: 0.14,
           longitudeDelta: 0.0121,
         }}>
-        {markerDetails.map(el => {
+        {markerDetails.map((el: MarkerDetails) => {
           return (
             <Marker
               tracksViewChanges={false}
@@ -73,7 +70,8 @@ const LandmarkMap: React.FC = () => {
                   color={el.isSelected ? blue : gray}
                   testID={'markerIcon'}
                 />
-                {likedCards?.filter(card => card?.id === el.id)[0]?.isLiked && (
+                {likedCards?.filter((card: LikedCards) => card?.id === el.id)[0]
+                  ?.isLiked && (
                   <Icon
                     name="heart"
                     size={25}

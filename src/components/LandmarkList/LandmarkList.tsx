@@ -1,10 +1,17 @@
 import React, {useEffect, useRef} from 'react';
-import {StyleSheet, FlatList, Animated, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  FlatList,
+  Animated,
+  ScrollView,
+  ListRenderItem,
+} from 'react-native';
 import {getHeight, getWidth} from '../../utils/generalUtils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 import {whiteBg} from '../../themes/colors';
 import {RootState} from '../../store/store';
 import {useSelector} from 'react-redux';
+import {MarkerDetails} from '../../actions';
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -17,15 +24,13 @@ const styles = StyleSheet.create({
   },
 });
 interface ItemProps {
-  item: {
-    name: string;
-    id: number;
-    uri: string;
-    description: string;
-  };
+  id: number;
+  name: string;
+  uri: string;
+  description: string;
 }
 
-const renderItem = ({item}: ItemProps) => (
+const renderItem: ListRenderItem<ItemProps> = ({item}) => (
   <LandmarkCard
     name={item.name}
     id={item.id}
@@ -44,13 +49,16 @@ const LandmarkList: React.FC = () => {
   );
 
   const scrollX = useRef(new Animated.Value(0)).current;
+  const flatListRef = useRef<FlatList>(null);
+
   console.log('scrollX', scrollX);
 
   useEffect(() => {
-    const selectedLandmarkId = markerDetails?.filter(el => el?.isSelected)[0]
-      ?.id;
+    const selectedLandmarkId = markerDetails?.filter(
+      (el: MarkerDetails) => el?.isSelected,
+    )[0]?.id;
     selectedLandmarkId &&
-      flatListRef.scrollToIndex({
+      flatListRef.current?.scrollToIndex({
         animated: true,
         index: selectedLandmarkId - 1,
         viewOffset: 40,
@@ -78,9 +86,7 @@ const LandmarkList: React.FC = () => {
       )}
       scrollEventThrottle={10}>
       <FlatList
-        ref={ref => {
-          flatListRef = ref;
-        }}
+        ref={flatListRef}
         contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
         data={cardDetails}
         renderItem={renderItem}

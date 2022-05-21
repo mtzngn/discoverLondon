@@ -1,6 +1,11 @@
 import londonLandmarks from '../../api/londonLandmarks.json';
+import {
+  LikedCards,
+  CardDetails,
+  MarkerDetails,
+} from '../../actions/landmarkActions';
 
-export const markerDetails = londonLandmarks.map(el => {
+export const markerDetails: MarkerDetails[] = londonLandmarks.map(el => {
   return {
     latlng: {
       latitude: el.latlng.latitude,
@@ -10,7 +15,7 @@ export const markerDetails = londonLandmarks.map(el => {
     id: el.id,
   };
 });
-export const cardDetails = londonLandmarks.map(el => {
+export const cardDetails: CardDetails[] = londonLandmarks.map(el => {
   return {
     name: el.name,
     id: el.id,
@@ -18,7 +23,7 @@ export const cardDetails = londonLandmarks.map(el => {
     description: el.description,
   };
 });
-export const likedCards = londonLandmarks.map(el => {
+export const likedCards: LikedCards[] = londonLandmarks.map(el => {
   return {
     isLiked: false,
     id: el.id,

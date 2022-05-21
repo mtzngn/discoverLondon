@@ -8,7 +8,7 @@ export interface MarkerDetails {
   id: number;
   latlng: {
     latitude: number;
-    longtitude: number;
+    longitude: number;
   };
   isSelected: boolean;
 }
@@ -24,14 +24,14 @@ export interface LikedCards {
   isLiked: boolean;
 }
 export interface Initialize {
-  markerDetails: MarkerDetails[];
-  cardDetails: CardDetails[];
-  likedCards: LikedCards[];
+  markerDetails: MarkerDetails;
+  cardDetails: CardDetails;
+  likedCards: LikedCards;
 }
 
 export interface InitializeAction {
   readonly type: 'INITIALIZE_LANDMARKS';
-  payload: Initialize;
+  payload: Initialize[];
 }
 
 export interface LikeAction {
