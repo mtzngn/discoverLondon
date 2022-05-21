@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {useDispatch, useSelector} from 'react-redux';
@@ -34,28 +34,25 @@ const LikedIndicator: React.FC<Props> = ({id}) => {
 
   const dispatch = useDispatch();
   const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+
   return (
     <TouchableOpacity
       style={styles.heartContainer}
       onPress={() => dispatch(likeLandmark(id))}>
-      {isLiked ? (
-        <AnimatedIcon
-          name="heart"
-          size={20}
-          color={red}
-          testID={'heartIcon'}
-          onLoad={Animated.spring(currentValue, {
-            toValue: 1,
-            friction: 5,
-            useNativeDriver: true,
-          }).start()}
-          style={{
-            transform: [{scale: currentValue}],
-          }}
-        />
-      ) : (
-        <Icon name="heart-alt" size={20} color={red} testID={'heartAltIcon'} />
-      )}
+      <AnimatedIcon
+        name={isLiked ? 'heart' : 'heart-alt'}
+        size={20}
+        color={red}
+        testID={'heartIcon'}
+        onLoad={Animated.spring(currentValue, {
+          toValue: 1,
+          friction: 5,
+          useNativeDriver: true,
+        }).start()}
+        style={{
+          transform: [{scale: isLiked ? currentValue : 1}],
+        }}
+      />
     </TouchableOpacity>
   );
 };

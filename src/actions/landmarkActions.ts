@@ -23,15 +23,14 @@ export interface LikedCards {
   id: number;
   isLiked: boolean;
 }
-export interface Initialize {
-  markerDetails: MarkerDetails;
-  cardDetails: CardDetails;
-  likedCards: LikedCards;
-}
 
 export interface InitializeAction {
   readonly type: 'INITIALIZE_LANDMARKS';
-  payload: Initialize[];
+  payload: {
+    markerDetails: MarkerDetails[];
+    cardDetails: CardDetails[];
+    likedCards: LikedCards[];
+  };
 }
 
 export interface LikeAction {

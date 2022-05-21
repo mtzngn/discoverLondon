@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useRef} from 'react';
 import {
   StyleSheet,
@@ -50,8 +51,6 @@ const LandmarkList: React.FC = () => {
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef<FlatList>(null);
-
-  console.log('scrollX', scrollX);
 
   useEffect(() => {
     const selectedLandmarkId = markerDetails?.filter(

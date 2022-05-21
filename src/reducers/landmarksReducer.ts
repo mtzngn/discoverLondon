@@ -7,9 +7,9 @@ import {
 import {INITIALIZE_LANDMARKS, LIKE_LANDMARK, SELECT_LANDMARK} from '../actions';
 
 interface Landmarks {
-  markerDetails: Array<MarkerDetails>;
-  cardDetails: Array<CardDetails>;
-  likedCards: Array<LikedCards>;
+  markerDetails: MarkerDetails[];
+  cardDetails: CardDetails[];
+  likedCards: LikedCards[];
 }
 
 const INITIAL_STATE: Landmarks = {
