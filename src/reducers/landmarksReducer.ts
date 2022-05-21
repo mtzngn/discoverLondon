@@ -13,6 +13,7 @@ interface Landmarks {
 const INITIAL_STATE: Landmarks = {
   markerDetails: [],
   cardDetails: [],
+  likedCards: [],
 };
 
 export default (state = INITIAL_STATE, action: LandmarkAction) => {
@@ -22,12 +23,13 @@ export default (state = INITIAL_STATE, action: LandmarkAction) => {
         ...state,
         markerDetails: action.payload.markerDetails,
         cardDetails: action.payload.cardDetails,
+        likedCards: action.payload.likedCards,
       };
     case LIKE_LANDMARK:
       const likedLanmarkId = action.payload;
       return {
         ...state,
-        markerDetails: state.markerDetails.map(el =>
+        likedCards: state.likedCards.map(el =>
           el.id === likedLanmarkId ? {...el, isLiked: !el.isLiked} : el,
         ),
       };

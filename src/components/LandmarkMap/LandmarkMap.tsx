@@ -36,6 +36,12 @@ const LandmarkMap: React.FC = () => {
   const {markerDetails} = useSelector(
     (state: RootState) => state.landmarksReducer,
   );
+  const {likedCards} = useSelector(
+    (state: RootState) => state.landmarksReducer,
+  );
+  const {selectedCards} = useSelector(
+    (state: RootState) => state.landmarksReducer,
+  );
   const dispatch = useDispatch();
 
   return (
@@ -67,7 +73,7 @@ const LandmarkMap: React.FC = () => {
                   color={el.isSelected ? blue : gray}
                   testID={'markerIcon'}
                 />
-                {el.isLiked && (
+                {likedCards?.filter(card => card?.id === el.id)[0]?.isLiked && (
                   <Icon
                     name="heart"
                     size={25}

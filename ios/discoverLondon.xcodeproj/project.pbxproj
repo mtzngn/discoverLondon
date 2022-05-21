@@ -165,7 +165,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				93EFE93799941B7446D033E2 /* [CP] Embed Pods Frameworks */,
 				EDA6FEA99EA319DB51CA85B9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -188,7 +187,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				CB87120A91CA37D1183EA9C6 /* [CP] Embed Pods Frameworks */,
 				354172A29C22AFC77D895786 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -289,23 +287,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-discoverLondon/Pods-discoverLondon-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93EFE93799941B7446D033E2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-discoverLondon-discoverLondonTests/Pods-discoverLondon-discoverLondonTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-discoverLondon-discoverLondonTests/Pods-discoverLondon-discoverLondonTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-discoverLondon-discoverLondonTests/Pods-discoverLondon-discoverLondonTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		945D60A3B0BE0228F1BEDD5F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -326,23 +307,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CB87120A91CA37D1183EA9C6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-discoverLondon/Pods-discoverLondon-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-discoverLondon/Pods-discoverLondon-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-discoverLondon/Pods-discoverLondon-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E9F7ECE663BD2FC17DC51173 /* [CP] Check Pods Manifest.lock */ = {

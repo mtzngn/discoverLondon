@@ -44,17 +44,18 @@ const LandmarkList: React.FC = () => {
   );
 
   const scrollX = useRef(new Animated.Value(0)).current;
+  console.log('scrollX', scrollX);
 
-  // useEffect(() => {
-  //   const selectedLandmarkId = markerDetails?.filter(el => el?.isSelected)[0]
-  //     ?.id;
-  //   selectedLandmarkId &&
-  //     flatListRef.scrollToIndex({
-  //       animated: true,
-  //       index: selectedLandmarkId - 1,
-  //       viewOffset: 40,
-  //     });
-  // }, [markerDetails]);
+  useEffect(() => {
+    const selectedLandmarkId = markerDetails?.filter(el => el?.isSelected)[0]
+      ?.id;
+    selectedLandmarkId &&
+      flatListRef.scrollToIndex({
+        animated: true,
+        index: selectedLandmarkId - 1,
+        viewOffset: 40,
+      });
+  }, [markerDetails]);
 
   return (
     <ScrollView
@@ -75,7 +76,7 @@ const LandmarkList: React.FC = () => {
           useNativeDriver: false,
         },
       )}
-      scrollEventThrottle={1}>
+      scrollEventThrottle={10}>
       <FlatList
         ref={ref => {
           flatListRef = ref;

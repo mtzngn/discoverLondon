@@ -16,7 +16,6 @@ const HomeScreen: React.FC = () => {
           latitude: el.latlng.latitude,
           longitude: el.latlng.longitude,
         },
-        isLiked: false,
         isSelected: false,
         id: el.id,
       };
@@ -29,8 +28,20 @@ const HomeScreen: React.FC = () => {
         description: el.description,
       };
     });
+    const likedCards = londonLandmarks.map(el => {
+      return {
+        isLiked: false,
+        id: el.id,
+      };
+    });
 
-    dispatch(initializeLandmarks({markerDetails, cardDetails}));
+    dispatch(
+      initializeLandmarks({
+        markerDetails,
+        cardDetails,
+        likedCards,
+      }),
+    );
   });
 
   return (

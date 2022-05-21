@@ -24,10 +24,10 @@ interface Props {
 }
 
 const LikedIndicator: React.FC<Props> = ({id}) => {
-  const {markerDetails} = useSelector(
+  const {likedCards} = useSelector(
     (state: RootState) => state.landmarksReducer,
   );
-  const isLiked = markerDetails.filter(el => el.id === id)[0].isLiked;
+  const isLiked = likedCards?.filter(el => el?.id === id)[0]?.isLiked;
 
   const currentValue = new Animated.Value(0);
 
