@@ -2,12 +2,14 @@ import {
   LandmarkAction,
   MarkerDetails,
   CardDetails,
+  LikedCards,
 } from '../actions/landmarkActions';
 import {INITIALIZE_LANDMARKS, LIKE_LANDMARK, SELECT_LANDMARK} from '../actions';
 
 interface Landmarks {
   markerDetails: Array<MarkerDetails>;
   cardDetails: Array<CardDetails>;
+  likedCards: Array<LikedCards>;
 }
 
 const INITIAL_STATE: Landmarks = {

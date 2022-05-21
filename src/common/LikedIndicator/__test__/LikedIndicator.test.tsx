@@ -30,6 +30,10 @@ jest.mock('react-redux', () => ({
           },
         },
       ],
+      likedCards: [
+        {id: 1, isLiked: false},
+        {id: 2, isLiked: true},
+      ],
     }),
 }));
 

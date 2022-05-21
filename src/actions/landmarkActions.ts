@@ -10,7 +10,6 @@ export interface MarkerDetails {
     latitude: number;
     longtitude: number;
   };
-  isLiked: boolean;
   isSelected: boolean;
 }
 
@@ -20,9 +19,14 @@ export interface CardDetails {
   uri: string;
   description: string;
 }
-interface Initialize {
+export interface LikedCards {
+  id: number;
+  isLiked: boolean;
+}
+export interface Initialize {
   markerDetails: MarkerDetails[];
   cardDetails: CardDetails[];
+  likedCards: LikedCards[];
 }
 
 export interface InitializeAction {
