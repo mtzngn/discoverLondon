@@ -46,7 +46,6 @@ const LandmarkMap: React.FC = () => {
     <View style={styles.container}>
       <MapView
         provider={isAndroid() ? PROVIDER_GOOGLE : null}
-        moveOnMarkerPress={true}
         ref={mapRef}
         style={styles.map}
         initialRegion={{
