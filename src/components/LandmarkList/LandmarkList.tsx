@@ -13,15 +13,18 @@ import {whiteBg} from '../../themes/colors';
 import {RootState} from '../../store/store';
 import {useSelector} from 'react-redux';
 import {MarkerDetails} from '../../actions';
+import {isAndroid} from '../../utils/generalUtils';
 
 const styles = StyleSheet.create({
   listContainer: {
-    marginTop: getHeight() * 0.7,
-    height: getHeight() * 0.3,
+    marginTop: isAndroid() ? getHeight() * 0.65 : getHeight() * 0.7,
+    height: isAndroid() ? getHeight() * 0.35 : getHeight() * 0.3,
     width: getWidth(),
     position: 'absolute',
     backgroundColor: whiteBg,
     borderRadius: 30,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
   },
 });
 interface ItemProps {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
@@ -40,11 +40,14 @@ const LandmarkMap: React.FC = () => {
     (state: RootState) => state.landmarksReducer,
   );
   const dispatch = useDispatch();
+  const mapRef = useRef(null);
 
   return (
     <View style={styles.container}>
       <MapView
         provider={isAndroid() ? PROVIDER_GOOGLE : null}
+        moveOnMarkerPress={true}
+        ref={mapRef}
         style={styles.map}
         initialRegion={{
           latitude: 51.500782626551675,
@@ -56,7 +59,13 @@ const LandmarkMap: React.FC = () => {
           return (
             <Marker
               tracksViewChanges={false}
-              onPress={() => dispatch(selectLandmark(el.id))}
+              onPress={() => {
+                dispatch(selectLandmark(el.id));
+                mapRef?.current?.animateToRegion({
+                  latitude: el.latlng.latitude,
+                  longitude: el.latlng.longitude,
+                });
+              }}
               tappable
               coordinate={{
                 latitude: el.latlng.latitude,

@@ -7,7 +7,7 @@ import {
   Animated,
 } from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
-import {getWidth, getHeight} from '../../utils/generalUtils';
+import {getWidth, getHeight, isAndroid} from '../../utils/generalUtils';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {blue, whiteBg, darkShadow} from '../../themes/colors';
 import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   likedContainer: {
     position: 'absolute',
     left: 320,
-    top: 50,
+    top: isAndroid() ? 20 : 50,
     zIndex: 10,
   },
 });
