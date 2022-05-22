@@ -1,8 +1,12 @@
-import landmarksReducer from '../landmarksReducer';
-import {initializeLandmarks, likeLandmark, selectLandmark} from '../../actions';
+import landmarksSlicer from '../landmarksSlicer';
+import {
+  initializeLandmarks,
+  likeLandmark,
+  selectLandmark,
+} from '../landmarksSlicer';
 
 it('should return the initial state', () => {
-  expect(landmarksReducer(undefined, {})).toEqual({
+  expect(landmarksSlicer(undefined, {})).toEqual({
     cardDetails: [],
     likedCards: [],
     markerDetails: [],
@@ -16,7 +20,7 @@ it('should handle initializing', () => {
     markerDetails: [],
   };
   expect(
-    landmarksReducer(
+    landmarksSlicer(
       previousState,
       initializeLandmarks({
         markerDetails: [{id: 1}],
@@ -44,7 +48,7 @@ it('should handle liking a landmark', () => {
     likedCards: [{id: 1, isLiked: false}],
     markerDetails: [],
   };
-  expect(landmarksReducer(previousState, likeLandmark(1))).toEqual({
+  expect(landmarksSlicer(previousState, likeLandmark(1))).toEqual({
     cardDetails: [],
     likedCards: [
       {
@@ -62,7 +66,7 @@ it('should handle selecting a landmark', () => {
     likedCards: [],
     markerDetails: [{id: 1, isSelected: false}],
   };
-  expect(landmarksReducer(previousState, selectLandmark(1))).toEqual({
+  expect(landmarksSlicer(previousState, selectLandmark(1))).toEqual({
     cardDetails: [],
     likedCards: [],
     markerDetails: [{id: 1, isSelected: true}],
