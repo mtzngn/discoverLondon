@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 export interface MarkerDetails {
   id: number;
@@ -20,13 +20,13 @@ export interface LikedCards {
   isLiked: boolean;
 }
 
-interface Landmarks {
+interface LandmarksState {
   markerDetails: MarkerDetails[];
   cardDetails: CardDetails[];
   likedCards: LikedCards[];
 }
 
-const initialState: Landmarks = {
+const initialState: LandmarksState = {
   markerDetails: [],
   cardDetails: [],
   likedCards: [],
@@ -36,16 +36,16 @@ export const landmarksSlice = createSlice({
   name: 'landmarks',
   initialState,
   reducers: {
-    initializeLandmarks: (state, action) => {
+    initializeLandmarks: (state, action: PayloadAction<LandmarksState>) => {
       state.markerDetails.push(...action.payload.markerDetails);
       state.cardDetails.push(...action.payload.cardDetails);
       state.likedCards.push(...action.payload.likedCards);
     },
-    likeLandmark: (state, action) => {
+    likeLandmark: (state, action: PayloadAction<number>) => {
       state.likedCards.filter(el => el.id === action.payload)[0].isLiked =
         !state.likedCards.filter(el => el.id === action.payload)[0].isLiked;
     },
-    selectLandmark: (state, action) => {
+    selectLandmark: (state, action: PayloadAction<number>) => {
       state.markerDetails = state.markerDetails.map(el =>
         el.id === action.payload
           ? {...el, isSelected: true}

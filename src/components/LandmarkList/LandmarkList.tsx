@@ -7,13 +7,12 @@ import {
   ScrollView,
   ListRenderItem,
 } from 'react-native';
-import {getHeight, getWidth} from '../../utils/generalUtils';
-import LandmarkCard from '../LandmarkCard/LandmarkCard';
-import {whiteBg} from '../../themes/colors';
 import {RootState} from '../../store/store';
 import {useSelector} from 'react-redux';
-import {MarkerDetails} from '../../actions';
-import {isAndroid} from '../../utils/generalUtils';
+import {MarkerDetails, CardDetails} from '../../reducers/landmarksSlicer';
+import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
+import LandmarkCard from '../LandmarkCard/LandmarkCard';
+import {whiteBg} from '../../themes/colors';
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -27,14 +26,8 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 0,
   },
 });
-interface ItemProps {
-  id: number;
-  name: string;
-  uri: string;
-  description: string;
-}
 
-const renderItem: ListRenderItem<ItemProps> = ({item}) => (
+const renderItem: ListRenderItem<CardDetails> = ({item}) => (
   <LandmarkCard
     name={item.name}
     id={item.id}
@@ -89,7 +82,7 @@ const LandmarkList: React.FC = () => {
         data={cardDetails}
         renderItem={renderItem}
         horizontal={true}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `card${item.id}`}
         snapToInterval={300}
         snapToAlignment="center"
         pagingEnabled

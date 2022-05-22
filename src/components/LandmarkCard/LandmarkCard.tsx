@@ -5,7 +5,7 @@ import {lightText} from '../../themes/colors';
 import {SharedElement} from 'react-navigation-shared-element';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {CardDetails} from '../../actions';
+import {CardDetails} from '../../reducers/landmarksSlicer';
 
 const styles = StyleSheet.create({
   cardContainer: {
