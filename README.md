@@ -8,10 +8,10 @@ Install the packages first:
 `yarn install`
 `yarn run cocoapods`
 
-For iOS:
+Start the app for iOS:
 `yarn start`
 `yarn run ios`
 
-For Android:
+Start the app for Android:
 `yarn start`
 `yarn run android`

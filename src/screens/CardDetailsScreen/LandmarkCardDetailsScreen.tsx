@@ -7,6 +7,7 @@ import {
   Animated,
 } from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
+import {RouteProp} from '@react-navigation/native';
 import {getWidth, getHeight, isAndroid} from '../../utils/generalUtils';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {blue, whiteBg, darkShadow} from '../../themes/colors';
@@ -54,7 +55,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const LandCardDetailsScreen: React.FC = ({route, navigation}) => {
+interface DetailsProps {
+  route: RouteProp<
+    {params: {name: string; id: number; uri: string; description: string}},
+    'params'
+  >;
+  navigation: {goBack: Function};
+}
+const LandCardDetailsScreen: React.FC<DetailsProps> = ({route, navigation}) => {
   const {name, id, uri, description} = route.params;
   const mountedAnimated = useRef(new Animated.Value(0)).current;
 
