@@ -1,12 +1,12 @@
 import React, {useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {RootState} from '../../store/store';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectLandmark} from '../../reducers/landmarksSlicer';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {red, gray, blue} from '../../themes/colors';
-import {RootState} from '../../store/store';
-import {useDispatch, useSelector} from 'react-redux';
-import {selectLandmark} from '../../reducers/landmarksSlicer';
 
 const styles = StyleSheet.create({
   container: {

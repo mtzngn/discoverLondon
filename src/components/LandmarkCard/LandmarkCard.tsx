@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
-import {lightText} from '../../themes/colors';
 import {SharedElement} from 'react-navigation-shared-element';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {CardDetails} from '../../reducers/landmarksSlicer';
+import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
+import {lightText} from '../../themes/colors';
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 30,
-    maxWidth: 200,
+    maxWidth: 210,
     color: lightText,
     fontWeight: '800',
     marginTop: 'auto',

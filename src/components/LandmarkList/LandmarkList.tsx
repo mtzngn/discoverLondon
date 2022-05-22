@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {
   StyleSheet,
   FlatList,
@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import {RootState} from '../../store/store';
 import {useSelector} from 'react-redux';
-import {MarkerDetails, CardDetails} from '../../reducers/landmarksSlicer';
+import {CardDetails} from '../../reducers/landmarksSlicer';
 import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 import {whiteBg} from '../../themes/colors';
+import useScrollTo from '../../hooks/useScrollTo/useScrollTo';
 
 const styles = StyleSheet.create({
   listContainer: {
@@ -44,17 +45,7 @@ const LandmarkList: React.FC = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef<FlatList>(null);
 
-  useEffect(() => {
-    const selectedLandmarkId = markerDetails?.filter(
-      (el: MarkerDetails) => el?.isSelected,
-    )[0]?.id;
-    selectedLandmarkId &&
-      flatListRef.current?.scrollToIndex({
-        animated: true,
-        index: selectedLandmarkId - 1,
-        viewOffset: 40,
-      });
-  }, [markerDetails]);
+  useScrollTo(flatListRef, markerDetails);
 
   return (
     <ScrollView
@@ -82,11 +73,12 @@ const LandmarkList: React.FC = () => {
         data={cardDetails}
         renderItem={renderItem}
         horizontal={true}
-        keyExtractor={item => `card${item.id}`}
+        keyExtractor={item => `card${item.name}`}
         snapToInterval={300}
         snapToAlignment="center"
         pagingEnabled
         showsHorizontalScrollIndicator={false}
+        testID={'landmarkList'}
       />
     </ScrollView>
   );

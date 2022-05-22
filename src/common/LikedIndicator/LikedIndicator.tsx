@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Animated} from 'react-native';
-import Icon from 'react-native-vector-icons/Fontisto';
 import {useDispatch, useSelector} from 'react-redux';
 import {likeLandmark} from '../../reducers/landmarksSlicer';
 import {RootState} from '../../store/store';
+import Icon from 'react-native-vector-icons/Fontisto';
 import {whiteBg, red} from '../../themes/colors';
 
 const styles = StyleSheet.create({
