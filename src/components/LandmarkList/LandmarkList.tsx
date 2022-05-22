@@ -70,6 +70,15 @@ const LandmarkList: React.FC = () => {
       <FlatList
         ref={flatListRef}
         contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}
+        onScrollToIndexFailed={info => {
+          const wait = new Promise(resolve => setTimeout(resolve, 500));
+          wait.then(() => {
+            flatListRef.current?.scrollToIndex({
+              index: info.index,
+              animated: true,
+            });
+          });
+        }}
         data={cardDetails}
         renderItem={renderItem}
         horizontal={true}
