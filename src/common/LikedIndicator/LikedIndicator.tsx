@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {useDispatch, useSelector} from 'react-redux';
-import {likeLandmark} from '../../actions';
+import {likeLandmark} from '../../reducers/landmarksSlicer';
 import {RootState} from '../../store/store';
 import {whiteBg, red} from '../../themes/colors';
 
@@ -24,9 +24,7 @@ interface Props {
 }
 
 const LikedIndicator: React.FC<Props> = ({id}) => {
-  const {likedCards} = useSelector(
-    (state: RootState) => state.landmarksReducer,
-  );
+  const {likedCards} = useSelector((state: RootState) => state.landmarks);
   const isLiked = likedCards?.filter(el => el?.id === id)[0]?.isLiked;
 
   const dispatch = useDispatch();

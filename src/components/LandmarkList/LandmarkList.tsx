@@ -44,13 +44,9 @@ const renderItem: ListRenderItem<ItemProps> = ({item}) => (
 );
 
 const LandmarkList: React.FC = () => {
-  const {cardDetails} = useSelector(
-    (state: RootState) => state.landmarksReducer,
-  );
+  const {cardDetails} = useSelector((state: RootState) => state.landmarks);
 
-  const {markerDetails} = useSelector(
-    (state: RootState) => state.landmarksReducer,
-  );
+  const {markerDetails} = useSelector((state: RootState) => state.landmarks);
 
   const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef<FlatList>(null);

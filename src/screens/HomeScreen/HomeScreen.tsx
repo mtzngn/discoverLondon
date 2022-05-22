@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import LandmarkMap from '../../components/LandmarkMap/LandmarkMap';
 import LandmarkList from '../../components/LandmarkList/LandmarkList';
-import {initializeLandmarks} from '../../actions/landmarkActions';
+import {initializeLandmarks} from '../../reducers/landmarksSlicer';
 import {markerDetails, cardDetails, likedCards} from './utils';
 
 import {useDispatch} from 'react-redux';

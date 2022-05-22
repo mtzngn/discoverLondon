@@ -55,7 +55,7 @@ describe('LikedIndicator', () => {
       fireEvent.press(getByTestId('heartAltIcon'));
       expect(mockUseDispatch).toHaveBeenCalledWith({
         payload: 1,
-        type: 'like_landmark',
+        type: 'landmarks/likeLandmark',
       });
     });
   });

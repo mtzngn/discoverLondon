@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Fontisto';
 import {red, gray, blue} from '../../themes/colors';
 import {RootState} from '../../store/store';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectLandmark, MarkerDetails, LikedCards} from '../../actions';
+import {selectLandmark} from '../../reducers/landmarksSlicer';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,12 +33,8 @@ const styles = StyleSheet.create({
 });
 
 const LandmarkMap: React.FC = () => {
-  const {markerDetails} = useSelector(
-    (state: RootState) => state.landmarksReducer,
-  );
-  const {likedCards} = useSelector(
-    (state: RootState) => state.landmarksReducer,
-  );
+  const {markerDetails} = useSelector((state: RootState) => state.landmarks);
+  const {likedCards} = useSelector((state: RootState) => state.landmarks);
   const dispatch = useDispatch();
   const mapRef = useRef(null);
 
@@ -54,7 +50,7 @@ const LandmarkMap: React.FC = () => {
           latitudeDelta: 0.14,
           longitudeDelta: 0.0121,
         }}>
-        {markerDetails.map((el: MarkerDetails) => {
+        {markerDetails.map(el => {
           return (
             <Marker
               tracksViewChanges={false}
@@ -78,8 +74,7 @@ const LandmarkMap: React.FC = () => {
                   color={el.isSelected ? blue : gray}
                   testID={'markerIcon'}
                 />
-                {likedCards?.filter((card: LikedCards) => card?.id === el.id)[0]
-                  ?.isLiked && (
+                {likedCards?.filter(card => card?.id === el.id)[0]?.isLiked && (
                   <Icon
                     name="heart"
                     size={25}
