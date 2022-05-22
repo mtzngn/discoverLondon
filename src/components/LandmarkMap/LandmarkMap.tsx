@@ -36,7 +36,7 @@ const LandmarkMap: React.FC = () => {
   const {markerDetails} = useSelector((state: RootState) => state.landmarks);
   const {likedCards} = useSelector((state: RootState) => state.landmarks);
   const dispatch = useDispatch();
-  const mapRef = useRef(null);
+  const mapRef = useRef<MapView>(null);
 
   return (
     <View style={styles.container}>
@@ -59,6 +59,8 @@ const LandmarkMap: React.FC = () => {
                 mapRef?.current?.animateToRegion({
                   latitude: el.latlng.latitude,
                   longitude: el.latlng.longitude,
+                  latitudeDelta: 0.14,
+                  longitudeDelta: 0.0121,
                 });
               }}
               tappable
