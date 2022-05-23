@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {RootState} from '../../store/store';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectLandmark} from '../../reducers/landmarksReducer';
+import {MarkerDetails, selectLandmark} from '../../reducers/landmarksReducer';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
 import Icon from 'react-native-vector-icons/Fontisto';
@@ -32,11 +32,27 @@ const styles = StyleSheet.create({
   },
 });
 
+const INITIAL_REGION = {
+  latitude: 51.500782626551675,
+  longitude: -0.12552662330828043,
+  latitudeDelta: 0.14,
+  longitudeDelta: 0.0121,
+};
+
 const LandmarkMap: React.FC = () => {
   const {markerDetails} = useSelector((state: RootState) => state.landmarks);
   const {likedCards} = useSelector((state: RootState) => state.landmarks);
   const dispatch = useDispatch();
   const mapRef = useRef<MapView | any>(null);
+
+  const animateMarker = (el: MarkerDetails) => {
+    mapRef?.current?.animateToRegion({
+      latitude: el.latlng.latitude,
+      longitude: el.latlng.longitude,
+      latitudeDelta: mapRef.current.latitudeDelta,
+      longitudeDelta: mapRef.current.longitudeDelta,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -44,26 +60,15 @@ const LandmarkMap: React.FC = () => {
         provider={isAndroid() ? PROVIDER_GOOGLE : null}
         ref={mapRef}
         style={styles.map}
-        initialRegion={{
-          latitude: 51.500782626551675,
-          longitude: -0.12552662330828043,
-          latitudeDelta: 0.14,
-          longitudeDelta: 0.0121,
-        }}>
+        initialRegion={INITIAL_REGION}>
         {markerDetails.map(el => {
           return (
             <Marker
               tracksViewChanges={false}
               onPress={() => {
                 dispatch(selectLandmark(el.id));
-                mapRef?.current?.animateToRegion({
-                  latitude: el.latlng.latitude,
-                  longitude: el.latlng.longitude,
-                  latitudeDelta: mapRef.current.latitudeDelta,
-                  longitudeDelta: mapRef.current.longitudeDelta,
-                });
+                animateMarker(el);
               }}
-              tappable
               coordinate={{
                 latitude: el.latlng.latitude,
                 longitude: el.latlng.longitude,
