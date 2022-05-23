@@ -1,17 +1,11 @@
 import React, {useRef, useEffect} from 'react';
-import {
-  View,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Animated,
-} from 'react-native';
+import {View, Image, StyleSheet, Animated} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 import {RouteProp} from '@react-navigation/native';
 import {getWidth, getHeight, isAndroid} from '../../utils/generalUtils';
-import Icon from 'react-native-vector-icons/Fontisto';
-import {blue, whiteBg, darkShadow} from '../../themes/colors';
+import {whiteBg} from '../../themes/colors';
 import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
+import DownButton from '../../common/DownButton/DownButton';
 
 const styles = StyleSheet.create({
   screenContainer: {
@@ -29,23 +23,6 @@ const styles = StyleSheet.create({
   },
   description: {
     padding: 10,
-  },
-  backButtonContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    backgroundColor: whiteBg,
-    position: 'relative',
-    zIndex: 10,
-    bottom: 25,
-    left: getWidth() - 100,
-    shadowColor: darkShadow,
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.6,
-    shadowRadius: 4,
-    elevation: 5,
   },
   likedContainer: {
     position: 'absolute',
@@ -84,23 +61,16 @@ const LandCardDetailsScreen: React.FC<DetailsProps> = ({route, navigation}) => {
   });
   return (
     <View style={styles.screenContainer}>
-      <View style={styles.likedContainer}>
-        <SharedElement id={`item.${id}.liked`}>
-          <LikedIndicator id={id} />
-        </SharedElement>
-      </View>
+      <SharedElement id={`item.${id}.liked`} style={styles.likedContainer}>
+        <LikedIndicator id={id} />
+      </SharedElement>
+
       <SharedElement id={`item.${id}.photo`}>
         <Image source={{uri}} style={styles.cardImage} />
       </SharedElement>
-      <TouchableOpacity
-        testID={'angleDownButton'}
-        onPress={() => {
-          animation(0, 1).start();
-          navigation.goBack();
-        }}
-        style={styles.backButtonContainer}>
-        <Icon name="angle-down" size={20} color={blue} />
-      </TouchableOpacity>
+
+      <DownButton animation={animation} navigation={navigation} />
+
       <Animated.Text
         style={{
           ...styles.title,
@@ -109,6 +79,7 @@ const LandCardDetailsScreen: React.FC<DetailsProps> = ({route, navigation}) => {
         }}>
         {name}
       </Animated.Text>
+
       <Animated.Text
         style={{
           ...styles.description,
