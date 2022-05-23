@@ -24,7 +24,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const DownButton = ({animation, navigation}) => {
+interface DownButtonProps {
+  animation: Function;
+  navigation: {goBack: Function};
+}
+
+const DownButton: React.FC<DownButtonProps> = ({animation, navigation}) => {
   return (
     <TouchableOpacity
       testID={'angleDownButton'}
