@@ -1,19 +1,27 @@
 import {isAndroid, getWidth, getHeight} from '../generalUtils';
 
 describe('isAndroid', () => {
-  test('isAndroid', () => {
+  it('should return false for ios', () => {
     expect(isAndroid()).toBeFalsy();
+  });
+
+  it('should return true for android', () => {
+    jest.mock('react-native/Libraries/Utilities/Platform', () => ({
+      OS: 'android',
+      select: () => null,
+    }));
+    expect(isAndroid()).toBeTruthy();
   });
 });
 
 describe('getWidth', () => {
-  test('getWidth', () => {
+  it('getWidth', () => {
     expect(getWidth()).toBe(750);
   });
 });
 
 describe('getHeight', () => {
-  test('getHeight', () => {
+  it('getHeight', () => {
     expect(getHeight()).toBe(1334);
   });
 });

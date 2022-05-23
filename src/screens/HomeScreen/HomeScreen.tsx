@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {View} from 'react-native';
 import LandmarkMap from '../../components/LandmarkMap/LandmarkMap';
 import LandmarkList from '../../components/LandmarkList/LandmarkList';
 import {initializeLandmarks} from '../../reducers/landmarksSlicer';
 import {markerDetails, cardDetails, likedCards} from './utils';
 
 import {useDispatch} from 'react-redux';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const HomeScreen: React.FC = () => {
   });
 
   return (
-    <View>
+    <SafeAreaView>
       <LandmarkMap />
       <LandmarkList />
-    </View>
+    </SafeAreaView>
   );
 };
 

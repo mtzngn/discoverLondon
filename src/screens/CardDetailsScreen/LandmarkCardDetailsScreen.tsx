@@ -39,6 +39,7 @@ interface DetailsProps {
   >;
   navigation: {goBack: Function};
 }
+
 const LandCardDetailsScreen: React.FC<DetailsProps> = ({route, navigation}) => {
   const {name, id, uri, description} = route.params;
   const mountedAnimated = useRef(new Animated.Value(0)).current;
@@ -59,6 +60,7 @@ const LandCardDetailsScreen: React.FC<DetailsProps> = ({route, navigation}) => {
     inputRange: [0, 1],
     outputRange: [250, 0],
   });
+
   return (
     <View style={styles.screenContainer}>
       <SharedElement id={`item.${id}.liked`} style={styles.likedContainer}>
