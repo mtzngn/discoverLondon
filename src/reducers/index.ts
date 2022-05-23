@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import landmarksReducer from './landmarksSlicer';
+import landmarksReducer from './landmarksReducer';
 
 export default combineReducers({
   landmarks: landmarksReducer,

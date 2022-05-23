@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {SharedElement} from 'react-navigation-shared-element';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {CardDetails} from '../../reducers/landmarksSlicer';
+import {CardDetails} from '../../reducers/landmarksReducer';
 import LikedIndicator from '../../common/LikedIndicator/LikedIndicator';
 import {lightText} from '../../themes/colors';
 

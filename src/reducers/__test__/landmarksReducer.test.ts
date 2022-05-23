@@ -1,9 +1,9 @@
-import landmarksSlicer from '../landmarksSlicer';
+import landmarksSlicer from '../landmarksReducer';
 import {
   initializeLandmarks,
   likeLandmark,
   selectLandmark,
-} from '../landmarksSlicer';
+} from '../landmarksReducer';
 
 it('should return the initial state', () => {
   expect(landmarksSlicer(undefined, {})).toEqual({
@@ -23,22 +23,31 @@ it('should handle initializing', () => {
     landmarksSlicer(
       previousState,
       initializeLandmarks({
-        markerDetails: [{id: 1}],
-        cardDetails: [
-          {id: 1, name: 'test', image: 'test', description: 'test'},
+        markerDetails: [
+          {id: 1, latlng: {latitude: 1, longitude: 2}, isSelected: false},
         ],
+        cardDetails: [{id: 1, name: 'test', uri: 'test', description: 'test'}],
         likedCards: [{id: 1, isLiked: false}],
       }),
     ),
   ).toEqual({
-    cardDetails: [{description: 'test', id: 1, image: 'test', name: 'test'}],
+    cardDetails: [{description: 'test', id: 1, uri: 'test', name: 'test'}],
     likedCards: [
       {
         id: 1,
         isLiked: false,
       },
     ],
-    markerDetails: [{id: 1}],
+    markerDetails: [
+      {
+        id: 1,
+        isSelected: false,
+        latlng: {
+          latitude: 1,
+          longitude: 2,
+        },
+      },
+    ],
   });
 });
 
@@ -64,11 +73,22 @@ it('should handle selecting a landmark', () => {
   const previousState = {
     cardDetails: [],
     likedCards: [],
-    markerDetails: [{id: 1, isSelected: false}],
+    markerDetails: [
+      {id: 1, latlng: {latitude: 1, longitude: 2}, isSelected: false},
+    ],
   };
   expect(landmarksSlicer(previousState, selectLandmark(1))).toEqual({
     cardDetails: [],
     likedCards: [],
-    markerDetails: [{id: 1, isSelected: true}],
+    markerDetails: [
+      {
+        id: 1,
+        isSelected: true,
+        latlng: {
+          latitude: 1,
+          longitude: 2,
+        },
+      },
+    ],
   });
 });

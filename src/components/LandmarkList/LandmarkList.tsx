@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {RootState} from '../../store/store';
 import {useSelector} from 'react-redux';
-import {CardDetails} from '../../reducers/landmarksSlicer';
+import {CardDetails} from '../../reducers/landmarksReducer';
 import {getHeight, getWidth, isAndroid} from '../../utils/generalUtils';
 import LandmarkCard from '../LandmarkCard/LandmarkCard';
 import {whiteBg} from '../../themes/colors';

@@ -37,9 +37,9 @@ export const landmarksSlice = createSlice({
   initialState,
   reducers: {
     initializeLandmarks: (state, action: PayloadAction<LandmarksState>) => {
-      state.markerDetails.push(...action.payload.markerDetails);
-      state.cardDetails.push(...action.payload.cardDetails);
-      state.likedCards.push(...action.payload.likedCards);
+      state.markerDetails = action.payload.markerDetails;
+      state.cardDetails = action.payload.cardDetails;
+      state.likedCards = action.payload.likedCards;
     },
     likeLandmark: (state, action: PayloadAction<number>) => {
       state.likedCards.filter(el => el.id === action.payload)[0].isLiked =

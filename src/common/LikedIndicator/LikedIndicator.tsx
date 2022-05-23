@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {likeLandmark} from '../../reducers/landmarksSlicer';
+import {likeLandmark} from '../../reducers/landmarksReducer';
 import {RootState} from '../../store/store';
 import Icon from 'react-native-vector-icons/Fontisto';
 import {whiteBg, red} from '../../themes/colors';

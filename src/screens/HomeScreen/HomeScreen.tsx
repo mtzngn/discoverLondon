@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import LandmarkMap from '../../components/LandmarkMap/LandmarkMap';
 import LandmarkList from '../../components/LandmarkList/LandmarkList';
-import {initializeLandmarks} from '../../reducers/landmarksSlicer';
+import {initializeLandmarks} from '../../reducers/landmarksReducer';
 import {markerDetails, cardDetails, likedCards} from './utils';
 
 import {useDispatch} from 'react-redux';
