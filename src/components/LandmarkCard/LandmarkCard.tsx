@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingBottom: 5,
   },
+  sharedImage: {width: 280, height: 200},
 });
 
 export type RootStackParamList = {
@@ -52,8 +53,7 @@ const LandmarkCard: React.FC<CardDetails> = ({name, id, uri, description}) => {
   };
   return (
     <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
-      {/* eslint-disable-next-line react-native/no-inline-styles */}
-      <SharedElement id={`item.${id}.photo`} style={{width: 280, height: 200}}>
+      <SharedElement id={`item.${id}.photo`} style={styles.sharedImage}>
         <Image style={styles.cardImage} source={{uri}} />
       </SharedElement>
       <View style={styles.cardOverlay}>
