@@ -42,14 +42,18 @@ export const landmarksSlice = createSlice({
       state.likedCards = action.payload.likedCards;
     },
     likeLandmark: (state, action: PayloadAction<number>) => {
-      state.likedCards.filter(el => el.id === action.payload)[0].isLiked =
-        !state.likedCards.filter(el => el.id === action.payload)[0].isLiked;
+      const updatedCard = state.likedCards.find(
+        card => card.id === action.payload,
+      );
+      if (updatedCard) {
+        updatedCard.isLiked = !updatedCard?.isLiked;
+      }
     },
     selectLandmark: (state, action: PayloadAction<number>) => {
-      state.markerDetails = state.markerDetails.map(el =>
-        el.id === action.payload
-          ? {...el, isSelected: true}
-          : {...el, isSelected: false},
+      state.markerDetails = state.markerDetails.map(marker =>
+        marker.id === action.payload
+          ? {...marker, isSelected: true}
+          : {...marker, isSelected: false},
       );
     },
   },
