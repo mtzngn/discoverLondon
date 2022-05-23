@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Animated} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {likeLandmark} from '../../reducers/landmarksSlicer';
 import {RootState} from '../../store/store';
@@ -28,16 +28,16 @@ const LikedIndicator: React.FC<Props> = ({id}) => {
   const isLiked = likedCards?.filter(el => el?.id === id)[0]?.isLiked;
 
   const dispatch = useDispatch();
-  const AnimatedIcon = Animated.createAnimatedComponent(Icon);
   return (
     <TouchableOpacity
       style={styles.heartContainer}
       onPress={() => dispatch(likeLandmark(id))}>
-      {isLiked ? (
-        <AnimatedIcon name="heart" size={20} color={red} testID={'heartIcon'} />
-      ) : (
-        <Icon name="heart-alt" size={20} color={red} testID={'heartAltIcon'} />
-      )}
+      <Icon
+        name={isLiked ? 'heart' : 'heart-alt'}
+        size={20}
+        color={red}
+        testID={isLiked ? 'heartIcon' : 'heartAltIcon'}
+      />
     </TouchableOpacity>
   );
 };
