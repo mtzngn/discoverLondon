@@ -15,3 +15,4 @@ Start the app for iOS:
 Start the app for Android:
 `yarn start`
 `yarn run android`
+
