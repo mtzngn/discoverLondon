@@ -25,6 +25,11 @@ pipeline {
                sh 'yarn run ios'
             }
         }
+        stage('Linting') {
+            steps {
+               sh 'yarn run lint'
+            }
+        }
         stage('Run Unit Tests') {
             steps {
                sh 'yarn run test'
